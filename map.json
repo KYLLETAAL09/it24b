@@ -1,4 +1,4 @@
-
+[
 
     {
         "name":"ICS Laboratory 1" ,
@@ -6,4 +6,12 @@
         "Ing":124.8691,
         "description":"This is the ICS Laboratory 1, yipee"
 
-    }
+   },
+
+   {
+     "name":"Kylle <3 Zyra",
+     "lat":8.359896177575619,
+     "Ing":24.8692445357016,
+     "description":"This is the ICS Laboratory 2, yipee"
+   }
+]
