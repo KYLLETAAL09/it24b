@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+</head>
+<style>
+    #map {
+        height: 500px
+    }
+</style>
+</htmlhead>
+
+
+<body>
+    <h1>Map</h1>
+    <div id="map"></div>
+
+</body>
+<script>
+    
+    function initMap(map){
+var map = L.map('map').setView([8.360302114528377, 124.8684101925283], 17);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+      console.log("Map Loaded" + Date());
+
+      fetch('mapDataUrl')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(pin=>{
+
+
+                const marker = L.marker([location.lat, location.lng]).addTo(map);
+
+                const img = `<imgsr='${pin.img}' class"popup-Image">`;
+                marker.bindPopup(`
+                $(img) <br>
+                <b>${pin.title}<br>
+                ${pin.description}
+            `);
+
+                console.log(`${pin.name} loaded` + Date());
+
+
+
+                 (err=>console.error(`Error loading JSON:`,err));
+            });
+        })
+        
+
+
+
+        .catch(error => console.error('Error loading map data:', error));
+
+        var amker = L.marker([8.3593,1224.8691]).addTo(map);
+    marker.bindPopup("<b>ICS Laboratory 1</b><br>This is the ICS Laboratory 1, yipee").openPopup();
+
+    }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    initMap('map');
+})
+</script>
+</html>
